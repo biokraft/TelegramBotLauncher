@@ -7,7 +7,7 @@ Feel free to shoot me any tips or tricks on telegram at @eigenbedarf
 I'm still learning so bare with me if my code is not readable or badly structured. I'm always open for advices! Feel free to tell me anything that you would do better or would suggest that I'd change. I'm very keen on learning to be a better programmer!
 
 # What to do with this?
-![](https://imgur.com/cLybgbj.png)
+![](https://imgur.com/rPU5J4k.png)
 
 This small programm simply is supposed to aid everyone who would like to have a TelegramBot for his group/supergroup to help him/her manage spam, new users, commands (still need to do this) and even more. Basically my goal is to make it super easy to set up a working telegram bot.
 
