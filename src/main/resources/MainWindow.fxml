@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainWindowController">
+    <children>
+        <TabPane prefHeight="300.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+            <Tab closable="false" text="Home">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="134.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to TelegramBotLauncher!&#10;&#10;Stay tuned for updates on:" textAlignment="CENTER">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="164.0" fitWidth="164.0" layoutX="168.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-51.0" AnchorPane.topAnchor="127.0">
+                           <image>
+                              <Image url="@bot_logo_long.png" />
+                           </image>
+                        </ImageView>
+                        <Hyperlink layoutX="179.0" layoutY="119.0" onAction="#handleHyperlink" text="http://copperlabs.de/">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Hyperlink>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+                <Tab closable="false" text="Control">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                        <ImageView fitHeight="135.0" fitWidth="122.0" layoutX="189.0" layoutY="-32.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                           <image>
+                              <Image url="@bot_logo.png" />
+                           </image>
+                        </ImageView>
+                        <HBox alignment="CENTER" layoutY="199.208984375" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="On first launch you need to set your bot's token and name under &quot;Update Bot&quot;!&#10;Stop will terminate this program." textAlignment="CENTER">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="-4.099999904632568" layoutY="81.9000015258789" spacing="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleStart" text="Start" />
+                              <Button mnemonicParsing="false" onAction="#handleStop" text="Stop" />
+                           </children>
+                        </HBox>
+                        <ProgressBar fx:id="progressBar" layoutX="150.0" layoutY="134.0" prefWidth="200.0" progress="0.0" />
+                        <Text fx:id="updateWarning" layoutX="30.0" layoutY="182.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Bot-Token seems to be invalid or missing" textAlignment="CENTER" visible="false" wrappingWidth="440.4638671875">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <ProgressIndicator fx:id="progressCircle" layoutX="236.0" layoutY="127.0" prefHeight="34.0" prefWidth="28.0" visible="false" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="configTab" closable="false" disable="true" text="Config">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="126.0" prefWidth="469.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="151.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="2.0" prefWidth="132.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0" prefWidth="184.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <CheckBox fx:id="checkSpam" mnemonicParsing="false" onAction="#handleSpamCheck" text="Anti-URL-Spam*" />
+                              <CheckBox fx:id="spamOption" mnemonicParsing="false" onAction="#handleSpamOption" prefHeight="57.0" prefWidth="248.0" text="only delete if not&#10;member for 7 days" GridPane.columnIndex="2" />
+                              <CheckBox fx:id="greeting" mnemonicParsing="false" onAction="#handleGreeting" text="Greet new members" GridPane.rowIndex="1" />
+                              <CheckBox mnemonicParsing="false" text="More to come" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="feedback" mnemonicParsing="false" onAction="#handleFeedback" text="give feedback*" GridPane.columnIndex="1" />
+                              <TextArea fx:id="greetingText" onMouseExited="#handleGreetingText" prefHeight="200.0" prefWidth="200.0" promptText="Welcome  to our group chat!" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                        <Text layoutX="290.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Bot will need admin rights for this to work!">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="updateTab" closable="false" text="Update Bot">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <VBox alignment="CENTER" prefHeight="300.0" prefWidth="506.0" spacing="20.0">
+                                            <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter your desired name and token" textAlignment="CENTER" wrappingWidth="275.9830722808838" />
+                                                <TextField fx:id="bot_name" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="300.0" promptText="Bot Name">
+                                                    <opaqueInsets>
+                                                        <Insets />
+                                                    </opaqueInsets>
+                                                    <cursor>
+                                                        <Cursor fx:constant="DEFAULT" />
+                                                    </cursor>
+                                                </TextField>
+                                                <TextField fx:id="bot_token" alignment="CENTER" layoutX="110.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="300.0" promptText="Bot Token">
+                                                    <opaqueInsets>
+                                                        <Insets />
+                                                    </opaqueInsets>
+                                                    <cursor>
+                                                        <Cursor fx:constant="DEFAULT" />
+                                                    </cursor>
+                                                </TextField>
+                                                <Button fx:id="update" mnemonicParsing="false" onAction="#handleUpdate" text="Update" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
