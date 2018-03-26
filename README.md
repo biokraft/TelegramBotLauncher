@@ -17,5 +17,8 @@ This small programm simply is supposed to aid everyone who would like to have a 
     * do not delete URLs if the person has been part of the group for more than 7 days
 * Greet new members
     * set the greeting text yourself
+    
+# Download
+Download executable jar: [TBL_0.1.0](https://mega.nz/#!TJoBFayD!szd2CYl0YpXLLq-MuXeWO5BoEo-jH-qyllIhIvp7pQ0)
 
 
