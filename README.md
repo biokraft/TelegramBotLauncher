@@ -17,6 +17,7 @@ This small programm simply is supposed to aid everyone who would like to have a 
     * do not delete URLs if the person has been part of the group for more than 7 days
 * Greet new members
     * set the greeting text yourself
+* Post your latest tweet by typing /tweet
     
 # Download
 Download executable jar:
