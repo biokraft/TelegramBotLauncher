@@ -19,6 +19,8 @@ This small programm simply is supposed to aid everyone who would like to have a 
     * set the greeting text yourself
     
 # Download
-Download executable jar: [TBL_0.1.0](https://mega.nz/#!TJoBFayD!szd2CYl0YpXLLq-MuXeWO5BoEo-jH-qyllIhIvp7pQ0)
+Download executable jar:
+[TBL_0.1.0](https://mega.nz/#!TJoBFayD!szd2CYl0YpXLLq-MuXeWO5BoEo-jH-qyllIhIvp7pQ0)
+[TBL_0.2.0](https://mega.nz/#!DRp2TBQL!S22SoFNM192G4Gj5YbuBimOC6dnc1OhnHgbK04-z_Kk)
 
 
