@@ -9,7 +9,6 @@
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -88,11 +87,10 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="126.0" prefWidth="469.0">
+                        <GridPane alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="126.0" prefWidth="316.0">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="151.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="2.0" prefWidth="132.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0" prefWidth="184.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -100,19 +98,23 @@
                               <RowConstraints maxHeight="67.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <CheckBox fx:id="checkSpam" mnemonicParsing="false" onAction="#handleSpamCheck" text="Anti-URL-Spam*" />
-                              <CheckBox fx:id="spamOption" mnemonicParsing="false" onAction="#handleSpamOption" prefHeight="57.0" prefWidth="248.0" text="only delete if not&#10;member for 7 days" GridPane.columnIndex="2" />
-                              <CheckBox fx:id="greeting" mnemonicParsing="false" onAction="#handleGreeting" text="Greet new members" GridPane.rowIndex="1" />
-                              <CheckBox mnemonicParsing="false" text="More to come" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="greeting" mnemonicParsing="false" onAction="#handleGreeting" text="Greeting for new members" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="forwardTweets" mnemonicParsing="false" onAction="#handleTwitter" text="/tweet *" GridPane.rowIndex="2" />
                               <CheckBox fx:id="feedback" mnemonicParsing="false" onAction="#handleFeedback" text="give feedback*" GridPane.columnIndex="1" />
-                              <TextArea fx:id="greetingText" onMouseExited="#handleGreetingText" prefHeight="200.0" prefWidth="200.0" promptText="Welcome  to our group chat!" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="twitterAccount" prefHeight="26.0" prefWidth="119.0" promptText="Twitter username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="checkSpam" mnemonicParsing="false" onAction="#handleSpamCheck" text="Anti-URL-Spam *" />
+                              <TextField fx:id="greetingText" promptText="Welcome to our group chat!" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <Text layoutX="290.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Bot will need admin rights for this to work!">
+                        <Text layoutX="285.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Bot will need admin rights for this to work!&#10;Please dont forget to set bot privacy to&#10;disabled or none of this will work">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Text>
+                        <Button alignment="TOP_LEFT" layoutX="336.0" layoutY="61.0" mnemonicParsing="false" onAction="#handleGreetingText" text="Save" textAlignment="CENTER" />
+                        <Button layoutX="336.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleTwitterAccount" text="Save" />
+                        <CheckBox fx:id="spamOption" layoutX="328.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleSpamOption" onMouseEntered="#showLockInfo" onMouseExited="#hideLockInfo" prefHeight="57.0" prefWidth="155.0" text="7 days lock *" />
+                        <Text fx:id="lockInfo" layoutX="390.0" layoutY="75.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Only delete URLs&#10;from people who&#10;havent been part&#10;of your group for&#10;more than 7 days" visible="false" wrappingWidth="105.83062744140625" />
                      </children></AnchorPane>
                     </content>
                 </Tab>

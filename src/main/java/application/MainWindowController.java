@@ -18,11 +18,11 @@ public class MainWindowController {
 
     @FXML private TextField bot_name, bot_token;
     @FXML private ProgressBar progressBar;
-    @FXML public CheckBox checkSpam, greeting, spamOption, feedback;
-    @FXML private Text updateWarning;
+    @FXML public CheckBox checkSpam, greeting, spamOption, feedback, forwardTweets;
+    @FXML private Text updateWarning, lockInfo;
     @FXML private Tab configTab, updateTab;
     @FXML private ProgressIndicator progressCircle;
-    @FXML public TextArea greetingText;
+    @FXML public TextField twitterAccount, greetingText;
 
     public void setMain(Main main) {
         this.main = main;
@@ -71,6 +71,7 @@ public class MainWindowController {
             // Load settings from config file to Bot
             FileManager config = new FileManager("config");
             ArrayList<String> configData = config.getLines(false);
+
             BotController.setCheckSpam(configData.get(0).substring(15).equals("true"));
 
             BotController.setFeedback(configData.get(1).substring(15).equals("true"));
@@ -79,9 +80,11 @@ public class MainWindowController {
 
             BotController.setGreeting(configData.get(3).substring(15).equals("true"));
 
+            BotController.setForwardTweets(configData.get(5).substring(15).equals("true"));
 
-            // Set greeting prompt text
+            // Set greeting text and twitter account
             BotController.setGreetingText(configData.get(4).substring(15));
+            BotController.setTwitterAccount(configData.get(6).substring(15));
         } else {
             // Lock config tab and unlock update tab
             configTab.setDisable(true);
@@ -134,6 +137,14 @@ public class MainWindowController {
         }
     }
 
+    public void showLockInfo () {
+        lockInfo.setVisible(true);
+    }
+
+    public void hideLockInfo () {
+        lockInfo.setVisible(false);
+    }
+
     public void handleGreeting () {
         if (greeting.isSelected()) {
             System.out.println("GREETINGS SELECTED");
@@ -151,6 +162,28 @@ public class MainWindowController {
 
             // Save the newly set text
             new FileManager("config").replaceLine(5, "Greeting text: " + greetingText.getText());
+        }
+    }
+
+    public void handleTwitter () {
+        //TODO only selectable if there is a valid ChatID setup
+        if (forwardTweets.isSelected()) {
+            System.out.println("FORWARD TWITTER SELECTED");
+            BotController.setForwardTweets(true);
+            saveSetting(6, true);
+        } else {
+
+            BotController.setForwardTweets(false);
+            saveSetting(6, false);
+        }
+    }
+
+    public void handleTwitterAccount () {
+        if (twitterAccount.getText().length() > 3) {
+            BotController.setTwitterAccount(twitterAccount.getText());
+
+            // Save the newly set account
+            new FileManager("config").replaceLine(7, "Twitter  name: " + twitterAccount.getText());
         }
     }
 

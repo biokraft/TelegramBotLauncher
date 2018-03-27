@@ -1,5 +1,6 @@
 package bot;
 
+import application.TwitterController;
 import org.telegram.telegrambots.api.methods.groupadministration.GetChatAdministrators;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.updatingmessages.DeleteMessage;
@@ -15,7 +16,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Bot extends TelegramLongPollingBot {
-    public String BOT_USERNAME, BOT_TOKEN, greeting = "Welcome to our group chat!";
+    public String BOT_USERNAME, BOT_TOKEN, greeting = "Welcome to our group chat!", account = "LeTrumperino",
+            ChatID = "";
 
     private FileManager newUserData, botData, commandData;
     private ArrayList<Integer> userList;
@@ -23,7 +25,8 @@ public class Bot extends TelegramLongPollingBot {
     private ArrayList<String> commands;
 
     private final long startTime = System.nanoTime(), totalTime;
-    public boolean spamCheck = false, spamCheckOption = false, greetings = false, giveFeedback = false;
+    public boolean spamCheck = false, spamCheckOption = false, greetings = false, giveFeedback = false,
+            forwardTwitter = false;
 
     public Bot() {
         botData = new FileManager("bot");
@@ -44,13 +47,17 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public void onUpdateReceived(Update update) {
-        if (greetings) {
-            greetNewMembers(update, greeting);
-        }
-        if (spamCheck) {
-            checkForURLspam(update, giveFeedback);
-        }
+        ChatID = update.getMessage().getChatId().toString();
+
+        if (greetings) greetNewMembers(update, greeting);
+        if (spamCheck) checkForURLspam(update, giveFeedback);
+        if (forwardTwitter) checkTweetRequest(update);
+
         updateUserList(update);
+
+        if (update.hasMessage() && update.getMessage().isCommand() && update.getMessage().getText().equals("/getchatid")) {
+            sendText(update.getMessage().getChatId().toString(), update.getMessage().getChatId());
+        }
 
         /*TODO - timed broadcasts (markdown-mode)
         * TODO - implement commandData & cooldown
@@ -91,6 +98,17 @@ public class Bot extends TelegramLongPollingBot {
             System.out.println("TELEGRAM-API-EXCEPTION --- message could not be deleted");
         }
         return false;
+    }
+
+    private void checkTweetRequest (Update update) {
+        if (update.hasMessage() && update.getMessage().isCommand() && update.getMessage().getText().equals("/tweet")) {
+            DeleteMessage deleteMessage = new DeleteMessage()
+                    .setMessageId(update.getMessage().getMessageId())
+                    .setChatId(update.getMessage().getChatId().toString());
+            executeMessage(deleteMessage);
+
+            BotController.sendLatestTweet(update.getMessage().getChatId().toString(), account);
+        }
     }
 
     public void checkForURLspam(Update update, boolean giveFeedback) {
