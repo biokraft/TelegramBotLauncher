@@ -22,6 +22,6 @@ This small programm simply is supposed to aid everyone who would like to have a 
     
 # Download
 Download executable jar:
-[TBL_0.2.3](https://mega.nz/#!LMonTLZS!5_4ymo5pVXNLYmiWSnDiFRVrI8aqF7Zi37o9cF0aXMI) **(JavaFX required)**
+[TBL_0.2.3](https://mega.nz/#!XBZiRYSD!MR7hJ3vADawxUfKRF23Nu94awtUwCWf79LGrVCy1t2A) **(JavaFX required)**
 
 
