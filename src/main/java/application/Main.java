@@ -33,7 +33,7 @@ public class Main extends Application {
 
             primaryStage.setMinHeight(300);
             primaryStage.setMinWidth(500);
-            primaryStage.setTitle("TBL 0.2.0");
+            primaryStage.setTitle("TBL 0.2.3");
             primaryStage.getIcons().add(new Image("bot_logo_long.png"));
             primaryStage.setAlwaysOnTop(true);
 
