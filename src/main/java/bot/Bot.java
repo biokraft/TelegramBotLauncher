@@ -209,7 +209,7 @@ public class Bot extends TelegramLongPollingBot {
                 // set required ChatID
                 String CurrentChatID = update.getMessage().getChatId().toString();
 
-                // Delete greeting after 3 minutes
+                // Delete greeting after 10 sec
                 Timer timer = new Timer();
                 timer.schedule(new TimerTask() {
                     @Override
@@ -219,7 +219,7 @@ public class Bot extends TelegramLongPollingBot {
                                 .setMessageId(message1.getMessageId());
                         executeMessage(deleteMessage);
                     }
-                }, 180000); // 3 minutes in ms
+                }, 10 * 1000); // 10 sec in ms
 
             } else {
                 SendMessage message = new SendMessage()
@@ -243,7 +243,7 @@ public class Bot extends TelegramLongPollingBot {
                 // set required ChatID
                 String CurrentChatID = update.getMessage().getChatId().toString();
 
-                // Delete greeting after 3 minutes
+                // Delete greeting after 10 sec
                 Timer timer = new Timer();
                 timer.schedule(new TimerTask() {
                     @Override
@@ -253,7 +253,7 @@ public class Bot extends TelegramLongPollingBot {
                                 .setMessageId(message1.getMessageId());
                         executeMessage(deleteMessage);
                     }
-                }, 10000); // 3 minutes in ms
+                }, 10 * 1000); // 10 sec in ms
             }
         }
     }

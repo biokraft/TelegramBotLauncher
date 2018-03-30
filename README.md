@@ -17,8 +17,8 @@ This small programm simply is supposed to aid everyone who would like to have a 
     * 0.1.5 - give feedback to the spammer
 * 0.1.0 - Greet new members
     * 0.1.0 - set the greeting text yourself
-    * 0.2.3 - greeting text will disappear after 3 minutes
-* 0.2.0 - Post your latest tweet by typing /tweet (currently unavailable)
+    * 0.2.3 - greeting text will disappear after 10 sec
+* 0.2.0 - Post your latest tweet by typing /tweet **<- (currently not working)**
     
 # Download
 Download executable jar:

@@ -101,7 +101,7 @@ public class BotController {
                         .setChatId(ChatID);
                 bot.executeMessage(deleteMessage);
             }
-        }, 10000);
+        }, 10 * 1000);
 
 
 //        if (isRunning()) {
