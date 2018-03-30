@@ -3,10 +3,13 @@ package bot;
 import application.TwitterController;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
-import org.telegram.telegrambots.api.objects.Chat;
+import org.telegram.telegrambots.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 import org.telegram.telegrambots.generics.BotSession;
-import twitter4j.Twitter;
+
+import javax.print.DocFlavor;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class BotController {
 
@@ -86,12 +89,26 @@ public class BotController {
     }
 
     public static void sendLatestTweet (String ChatID, String account) {
-        if (isRunning()) {
-            if (new TwitterController().getLatestTweetURL(account)  != null) {
-                bot.sendText("*New tweet!* (@" + account + "):\n" + new TwitterController()
-                        .getLatestTweetURL(account), Long.parseLong(ChatID));
+        Integer messageID = bot.sendText("_This feature is currently unavailable_", Long.parseLong(ChatID));
+
+        // Delete message after 10 sec
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                DeleteMessage deleteMessage = new DeleteMessage()
+                        .setMessageId(messageID)
+                        .setChatId(ChatID);
+                bot.executeMessage(deleteMessage);
             }
-        }
+        }, 10000);
+
+
+//        if (isRunning()) {
+//            application.TwitterController twitterController = new TwitterController(account);
+//            bot.sendText("*New tweet!* (@" + account + "):\n" + twitterController
+//                    .getLatestTweet(), Long.parseLong(ChatID));
+//        }
     }
 
     public static void sendTwitterError () {

@@ -47,7 +47,7 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public void onUpdateReceived(Update update) {
-        ChatID = update.getMessage().getChatId().toString();
+        if (update.hasMessage()) ChatID = update.getMessage().getChatId().toString();
 
         if (spamCheck) checkForURLspam(update, giveFeedback);
 
@@ -118,16 +118,18 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private void respondToCommands(Update update) {
-        for (int i = 0; i < commands.size(); i++) {
-            if (update.getMessage().getText().equals("/" + commands.get(i).getTrigger()) ||
-                    update.getMessage().getText().contains("/" + commands.get(i).getTrigger() + "@")) {
-                sendText(commands.get(i).getResponse(), update.getMessage().getChatId());
+        if (update.hasMessage() && update.getMessage().isCommand()) {
+            for (int i = 0; i < commands.size(); i++) {
+                if (update.getMessage().getText().equals("/" + commands.get(i).getTrigger()) ||
+                        update.getMessage().getText().contains("/" + commands.get(i).getTrigger() + "@")) {
+                    sendText(commands.get(i).getResponse(), update.getMessage().getChatId());
+                }
             }
         }
     }
 
     public void checkForURLspam (Update update,boolean giveFeedback){
-        if (update.getMessage().hasEntities()) {
+        if (update.hasMessage() && update.getMessage().hasEntities()) {
             boolean delete = false;
             for (int i = 0; i < update.getMessage().getEntities().size(); i++) {
                 if (update.getMessage().getEntities().get(i).getType().equals("url")) {
@@ -200,7 +202,25 @@ public class Bot extends TelegramLongPollingBot {
                         .setChatId(update.getMessage().getChatId())
                         .enableMarkdown(true)
                         .setText("*" + update.getMessage().getNewChatMembers().get(0).getFirstName() + "* " + greeting);
-                executeMessage(message);
+
+                // Save message object for deleting it afterwards
+                Message message1 = executeMessage(message);
+
+                // set required ChatID
+                String CurrentChatID = update.getMessage().getChatId().toString();
+
+                // Delete greeting after 3 minutes
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        DeleteMessage deleteMessage = new DeleteMessage()
+                                .setChatId(CurrentChatID)
+                                .setMessageId(message1.getMessageId());
+                        executeMessage(deleteMessage);
+                    }
+                }, 180000); // 3 minutes in ms
+
             } else {
                 SendMessage message = new SendMessage()
                         .setChatId(update.getMessage().getChatId())
@@ -216,7 +236,24 @@ public class Bot extends TelegramLongPollingBot {
                     }
                 }
                 message.setText(message.getText() + " " + greeting);
-                executeMessage(message);
+
+                // Save message object for deleting it afterwards
+                Message message1 = executeMessage(message);
+
+                // set required ChatID
+                String CurrentChatID = update.getMessage().getChatId().toString();
+
+                // Delete greeting after 3 minutes
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        DeleteMessage deleteMessage = new DeleteMessage()
+                                .setChatId(CurrentChatID)
+                                .setMessageId(message1.getMessageId());
+                        executeMessage(deleteMessage);
+                    }
+                }, 10000); // 3 minutes in ms
             }
         }
     }
