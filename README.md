@@ -13,8 +13,8 @@ This small programm simply is supposed to aid everyone who would like to have a 
 
 # Working features:
 * 0.1.0 - Anti-URL-Spam
+    * 0.1.0 - do not delete URLs if the person has been part of the group for more than 7 days
     * 0.1.5 - give feedback to the spammer
-    * do not delete URLs if the person has been part of the group for more than 7 days
 * 0.1.0 - Greet new members
     * 0.1.0 - set the greeting text yourself
     * 0.2.3 - greeting text will disappear after 3 minutes
