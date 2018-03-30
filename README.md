@@ -12,15 +12,16 @@ I'm still learning so bare with me if my code is not readable or badly structure
 This small programm simply is supposed to aid everyone who would like to have a TelegramBot for his group/supergroup to help him/her manage spam, new users, commands (still need to do this) and even more. Basically my goal is to make it super easy to set up a working telegram bot.
 
 # Working features:
-* Anti-URL-Spam
-    * give feedback to the spammer
+* 0.1.0 - Anti-URL-Spam
+    * 0.1.5 - give feedback to the spammer
     * do not delete URLs if the person has been part of the group for more than 7 days
-* Greet new members
-    * set the greeting text yourself
-* Post your latest tweet by typing /tweet
+* 0.1.0 - Greet new members
+    * 0.1.0 - set the greeting text yourself
+    * 0.2.3 - greeting text will disappear after 3 minutes
+* 0.2.0 - Post your latest tweet by typing /tweet (currently unavailable)
     
 # Download
 Download executable jar:
-[TBL_0.2.3](https://mega.nz/#!LMonTLZS!5_4ymo5pVXNLYmiWSnDiFRVrI8aqF7Zi37o9cF0aXMI)
+[TBL_0.2.3](https://mega.nz/#!LMonTLZS!5_4ymo5pVXNLYmiWSnDiFRVrI8aqF7Zi37o9cF0aXMI) **(JavaFX required)**
 
 
