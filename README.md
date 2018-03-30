@@ -12,6 +12,8 @@ I'm still learning so bare with me if my code is not readable or badly structure
 This small programm simply is supposed to aid everyone who would like to have a TelegramBot for his group/supergroup to help him/her manage spam, new users, commands (still need to do this) and even more. Basically my goal is to make it super easy to set up a working telegram bot.
 
 # Working features:
+**Please set your bot privacy to disabled, for all this to work properly and give the bot admin rights**
+
 * 0.1.0 - Anti-URL-Spam
     * 0.1.0 - do not delete URLs if the person has been part of the group for more than 7 days
     * 0.1.5 - give feedback to the spammer
