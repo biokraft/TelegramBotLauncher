@@ -16,25 +16,29 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Bot extends TelegramLongPollingBot {
-    public String BOT_USERNAME, BOT_TOKEN, greeting = "Welcome to our group chat!", account = "LeTrumperino",
-            ChatID = "";
+    public String BOT_USERNAME, BOT_TOKEN, greeting = "Welcome to our group chat!",
+        account = "LeTrumperino", ChatID = "";
 
     private FileManager newUserData, botData, commandData;
     private ArrayList<Integer> userList;
 
     private ArrayList<Command> commands = new ArrayList<Command>();
 
-    private final long startTime = System.nanoTime(), totalTime;
-    public boolean spamCheck = false, spamCheckOption = false, greetings = false, giveFeedback = false,
-            forwardTwitter = false;
+    public boolean spamCheck = false, spamCheckOption = false, greetings = false,
+        giveFeedback = false, forwardTwitter = false;
 
     public Bot() {
+        long startTime = System.nanoTime();
+
+        // Loads the Bot-Token and Bot-Name
         botData = new FileManager("bot");
         loadBotData();
 
+        // Loads up all new users that are not allowed to post links
         newUserData = new FileManager("newUser", true);
         loadUserData();
 
+        // Loads up all the configured commands in command.data
         commandData = new FileManager("command");
         loadCommands();
 
@@ -42,7 +46,7 @@ public class Bot extends TelegramLongPollingBot {
         refreshUserDataAtFixedRate(7, 1);
 
         // Shows elapsed time during Bot init
-        totalTime = System.nanoTime() - startTime;
+        long totalTime = System.nanoTime() - startTime;
         System.out.println("The Bot init took: " + totalTime / 1000000 + "ms");
     }
 
@@ -65,7 +69,7 @@ public class Bot extends TelegramLongPollingBot {
             sendText(update.getMessage().getChatId().toString(), update.getMessage().getChatId());
         }
 
-        /*TODO - timed broadcasts (markdown-mode)
+        /* TODO - timed broadcasts (markdown-mode)
          * TODO - implement commandData & cooldown
          * TODO - implement threads for faster bot computation
          * TODO - Bot an einzelne ChatID koppeln*/
@@ -196,17 +200,17 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public void greetNewMembers (Update update, String greeting){
-        if (update.getMessage().getNewChatMembers() != null) {
+        if (update.hasMessage() && update.getMessage().getNewChatMembers() != null) {
             if (update.getMessage().getNewChatMembers().size() == 1) {
                 SendMessage message = new SendMessage()
                         .setChatId(update.getMessage().getChatId())
                         .enableMarkdown(true)
                         .setText("*" + update.getMessage().getNewChatMembers().get(0).getFirstName() + "* " + greeting);
 
-                // Save message object for deleting it afterwards
+                // Send and save message object for deleting it afterwards
                 Message message1 = executeMessage(message);
 
-                // set required ChatID
+                // Set required ChatID
                 String CurrentChatID = update.getMessage().getChatId().toString();
 
                 // Delete greeting after 10 sec
@@ -237,7 +241,7 @@ public class Bot extends TelegramLongPollingBot {
                 }
                 message.setText(message.getText() + " " + greeting);
 
-                // Save message object for deleting it afterwards
+                // Send and save message object for deleting it afterwards
                 Message message1 = executeMessage(message);
 
                 // set required ChatID
@@ -275,6 +279,8 @@ public class Bot extends TelegramLongPollingBot {
         int[] currentDate = parseDate(myDate.getCurrentDate()); // [day, month, year]
         for (int i = 0; i < lines.size(); i++) {
             String currentLine = lines.get(i);
+
+            // Get the date joined of current line that is in reading
             for (int z = currentLine.length() / 2; z < lines.get(i).length(); z++) {
                 if (currentLine.charAt(z) == ',' && currentLine.charAt(z + 1) == ' ' &&
                         (currentLine.charAt(z + 2) >= '0' && currentLine.charAt(z + 2) <= '9')) {
@@ -282,7 +288,10 @@ public class Bot extends TelegramLongPollingBot {
                     break;
                 }
             }
+            // Parse the read date
             int[] userJoinDate = parseDate(currentLine);
+
+            // Delete line if member has been part of the group for more than one week
             if (userJoinDate[1] < currentDate[1]) {
                 if (userJoinDate[0] < (30 - days) || currentDate[0] >= days) {
                     newUserData.removeLineIfCointains(userIDs.get(i).toString());
@@ -293,7 +302,7 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    public int[] parseDate (String raw){
+    private int[] parseDate (String raw){
         int[] result = new int[3];
         String cache = "";
         int arrIndex = 0;

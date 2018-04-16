@@ -21,9 +21,14 @@ This small programm simply is supposed to aid everyone who would like to have a 
     * 0.1.0 - set the greeting text yourself
     * 0.2.3 - greeting text will disappear after 10 sec
 * 0.2.0 - Post your latest tweet by typing /tweet **<- (currently not working)**
+* 0.2.4 - Set up all your desired commands in command.data like this:  [example](https://pastebin.com/Z0pK1E36)
+    * 0.2.4 - call your commands with /command or /command@yourname_bot
+
+
+
     
 # Download
 Download executable jar:
-[TBL_0.2.3](https://mega.nz/#!XBZiRYSD!MR7hJ3vADawxUfKRF23Nu94awtUwCWf79LGrVCy1t2A) **(JavaFX required)**
+[TBL_0.2.4](https://mega.nz/#!PZ5QXYia!EQOueX-UQB0yPGWZSFdpLdRR6kUYl4bV92OGRDbbmUk) **(JavaFX required)**
 
 
