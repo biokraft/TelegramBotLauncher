@@ -1,7 +1,7 @@
 # TelegramBotLauncher
 ![](https://imgur.com/ZG7vXWj.png)
 
-This is my small hobby project that I'm doing while learning java and programming in general. I started studying Informatics Games Engineering in Oct. 2017 and fucked up my programming classes. Thats why I thought why not programm something to enhance my skills and keep on practicing 👍 
+This is my small hobby project that I'm doing while learning java and programming in general. I started studying Informatics Games Engineering in Oct. 2017 and messed up my programming classes. Thats why I thought why not programm something to enhance my skills and keep on practicing 👍 
 
 Feel free to shoot me any tips or tricks on telegram at @eigenbedarf
 I'm still learning so bare with me if my code is not readable or badly structured. I'm always open for advices! Feel free to tell me anything that you would do better or would suggest that I'd change. I'm very keen on learning to be a better programmer!
