@@ -25,7 +25,7 @@ public class Bot extends TelegramLongPollingBot {
     private ArrayList<Command> commands = new ArrayList<Command>();
 
     public boolean spamCheck = false, spamCheckOption = false, greetings = false,
-        giveFeedback = false, forwardTwitter = false;
+        giveFeedback = false, forwardTwitter = true;
 
     public Bot() {
         long startTime = System.nanoTime();
